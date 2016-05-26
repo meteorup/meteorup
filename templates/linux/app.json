@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "<%= appName %>",
+      "script": "./current/bundle/main.js",
+      "log_date_format": "YYYY-MM-DD",
+      "exec_mode": "fork_mode",
+      "env": {
+        "PORT": 13000,
+        "MONGO_URL": "mongodb://127.0.0.1:27017/<%= appName %>",
+        "ROOT_URL": "http://<%= appName %>.yijianapp.com/",
+        "BIND_IP": "127.0.0.1"
+      }
+    }
+  ]
+}

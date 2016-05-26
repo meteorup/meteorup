@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var commander = require('commander');
+var fs        = require('fs');
+var async     = require('async');
+var path      = require('path');
+var actions   = require('../lib/actions');
+
+var pkg       = require('../package.json');
+
+
+commander.version(pkg.version)
+  .option('-v --version', 'get version')
+  .option('--debug', 'debug mode')
+  .option('--mobile-settings [mobile-settings]', 'mobile-settings json string')
+  .usage('[cmd] app');
+
+commander.on('--help', function() {
+  console.log('  Basic Examples:');
+  console.log('');
+  console.log('  Deployment help:');
+  console.log('');
+  console.log('    $ meteorup deploy help');
+  console.log('');
+  console.log('');
+});
+
+
+commander.command('deploy <project-name>')
+  .description('deploy your json')
+  .action(function(cmd) {
+
+    var pwd = path.resolve('.');
+    console.log(cmd);
+    console.log(pwd);
+    // console.log(commander);
+
+    var actionsRegistry = new actions( pwd ,commander);
+    if(actionsRegistry['deploy']) {
+      actionsRegistry['deploy'](cmd);
+    }
+  });
+
+
+
+commander.parse(process.argv);

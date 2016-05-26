@@ -1,0 +1,32 @@
+{
+  "bin": {
+    "meteorup": "./bin/meteorup"
+  },
+  "name": "meteorup",
+  "version": "1.0.0",
+  "description": "meteor enhancement tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "test/index.js"
+  },
+  "author": {
+    "email": "romejiang@gmail.com",
+    "name": "Jinag Tao"
+  },
+  "keywords": [
+    "meteor",
+    "enhancement",
+    "china",
+    "GFW"
+  ],
+  "homepage": "https://github.com/arunoda/meteor-up",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/arunoda/meteor-up.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arunoda/meteor-up/issues"
+  },
+
+  "license": "MIT",
+}
