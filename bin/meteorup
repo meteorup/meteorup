@@ -10,38 +10,104 @@ var actions   = require('../lib/actions');
 
 var pkg       = require('../package.json');
 
-
 commander.version(pkg.version)
-  .option('-v --version', 'get version')
-  .option('--debug', 'debug mode')
-  .option('--mobile-settings [mobile-settings]', 'mobile-settings json string')
-  .usage('[cmd] app');
+  .description(pkg.description)
+  .option('-v, --version', 'meteorup version')
+  .usage('deplay project-name');
 
 commander.on('--help', function() {
   console.log('  Basic Examples:');
   console.log('');
-  console.log('  Deployment help:');
+  console.log('  Faster install meteor:');
   console.log('');
-  console.log('    $ meteorup deploy help');
+  console.log('    $ meteorup install');
   console.log('');
+  console.log('  Deployment project:');
+  console.log('');
+  console.log('    $ meteorup deploy appName');
+  console.log('');
+  console.log('  Command help:');
+  console.log('');
+  console.log('    $ meteorup deploy -h');
   console.log('');
 });
 
-
+// 部署到meteorup
 commander.command('deploy <project-name>')
-  .description('deploy your json')
-  .action(function(cmd) {
+  .option('-m, --mobile-settings <mobile-settings.json>', 'Set mobile-settings from json file')
+  .option('-e, --env <env.json>', 'Set environment variables from json file')
+  .option('-d, --debug', 'debug mode')
+  .description('Deployment this project to meteorup.cn microhost')
+  .action(function(cmd , options) {
 
     var pwd = path.resolve('.');
-    console.log(cmd);
-    console.log(pwd);
+    // console.log(cmd);
+    // console.log(pwd);
     // console.log(commander);
+    console.log(options);
 
-    var actionsRegistry = new actions( pwd ,commander);
-    if(actionsRegistry['deploy']) {
-      actionsRegistry['deploy'](cmd);
-    }
-  });
+    // var actionsRegistry = new actions( pwd ,commander);
+    // if(actionsRegistry['deploy']) {
+    //   actionsRegistry['deploy'](cmd);
+    // }
+  }).on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ meteorup deploy appName  # Deployment to http://appName.meteorup.cn ');
+    console.log();
+    console.log('    $ meteorup deploy appName --env env.json');
+    console.log();
+  }
+);
+
+// 安装meteor
+commander.command('install')
+  .option('--verbose', 'verbose mode')
+  .description('Faster install meteor from meteorup mirror server')
+  .action(function(cmd , options) {
+
+    var pwd = path.resolve('.');
+    console.log(options);
+   
+  }).on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ meteorup install  # Install meteor ');
+    console.log();
+  }
+);
+
+// 添加包
+commander.command('add <package>')
+  .description('Add a package to this project.')
+  .action(function(cmd , options) {
+
+    var pwd = path.resolve('.');
+    console.log(options);
+   
+  }).on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ meteorup add romejiang:wechat-pay');
+    console.log();
+  }
+);
+
+// 添加包
+commander.command('remove <package>')
+  .description('Remove a package from this project.')
+  .action(function(cmd , options) {
+
+    var pwd = path.resolve('.');
+    console.log(options);
+   
+  }).on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ meteorup remove romejiang:wechat-pay');
+    console.log();
+  }
+);
 
 
 
