@@ -10,6 +10,9 @@
         "MONGO_URL": "mongodb://127.0.0.1:27017/<%= appName %>",
         "ROOT_URL": "http://<%= appName %>.yijianapp.com/",
         "BIND_IP": "127.0.0.1"
+        <% for(var key in env) { %>
+        "<%- key %>"="<%- env[key] %>"
+        <% } %>
       }
     }
   ]
