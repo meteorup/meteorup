@@ -35,3 +35,14 @@ $ meteorup update
 ## License
 
 Meteorup is made available under the terms of the MIT License (MIT)
+
+
+yum install -y openssh-clients
+yum install -y sudo
+
+
+sudo: sorry, you must have a tty to run sudo
+
+sudo vi /etc/sudoers
+注释掉 Default requiretty 一行
+#Default requiretty

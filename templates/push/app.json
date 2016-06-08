@@ -1,0 +1,15 @@
+{
+  "apps": [
+    {
+      "name": "<%= appName %>",
+      "script": "./current/bundle/main.js",
+      "log_date_format": "YYYY-MM-DD",
+      "exec_mode": "fork_mode",
+      "env": {
+        <% for(var key in env) { %>
+        "<%- key %>": "<%- env[key] %>",
+        <% } %>
+      }
+    }
+  ]
+}

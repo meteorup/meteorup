@@ -14,7 +14,7 @@ revert_app (){
 elaspsed=0
 while [[ true ]]; do
   elaspsed=$((elaspsed+1))
-  curl $APPNAME.yijianapp.com && exit 0
+  curl $APPNAME.meteorup.cn && exit 0
   sleep 1
 
   if [ "$elaspsed" == "$DEPLOY_CHECK_WAIT_TIME" ]; then

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-'use strict';
+// 'use strict';
 
 var commander = require('commander');
 var fs        = require('fs');
 var async     = require('async');
 var path      = require('path');
-var actions   = require('../lib/actions');
+var controller   = require('../lib/controller');
 
 var pkg       = require('../package.json');
 
@@ -38,18 +38,76 @@ commander.command('deploy <project-name>')
   .option('-e, --env <env.json>', 'Set environment variables from json file')
   .option('-d, --debug', 'debug mode')
   .description('Deployment this project to meteorup.cn microhost')
-  .action(function(cmd , options) {
+  .action(function(argument , options) {
 
     var pwd = path.resolve('.');
-    // console.log(cmd);
-    // console.log(pwd);
-    // console.log(commander);
-    console.log(options);
 
-    // var actionsRegistry = new actions( pwd ,commander);
-    // if(actionsRegistry['deploy']) {
-    //   actionsRegistry['deploy'](cmd);
+    // console.log("argument"); //project-name
+    // console.log(argument); // project-name
+    // console.log("pwd"); //项目地址
+    // console.log(pwd); //项目地址
+    // console.log("commander");// 整个Comm
+    // console.log(commander); //整个Comm
+    // console.log("options"); //选项
+    // console.log(options); //选项
+    // 
+    // for( var opt in options){
+    //   console.log("============");
+    //   console.log(opt);
+    //   console.log("=");
+    //   console.log(options[opt]);
     // }
+
+    var actionsRegistry = new controller( pwd ,options);
+    if(actionsRegistry['deploy']) {
+      actionsRegistry['deploy'](argument);
+    }
+
+  }).on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ meteorup deploy appName  # Deployment to http://appName.meteorup.cn ');
+    console.log();
+    console.log('    $ meteorup deploy appName --env env.json');
+    console.log();
+  }
+);
+
+// 配置服务器运行环境
+commander.command('setup')
+  .description('Installation configuration server runtime environments')
+  .action(function(argument , options) {
+
+    var pwd = path.resolve('.');
+
+    var actionsRegistry = new controller( pwd ,options);
+    if(actionsRegistry['setup']) {
+      actionsRegistry['setup']();
+    }
+   
+  }).on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ meteorup setup  # Install meteor ');
+    console.log();
+  }
+);
+
+
+// 部署到私有的服务器上
+commander.command('push')
+  .option('-m, --mobile-settings <mobile-settings.json>', 'Set mobile-settings from json file')
+  .option('-d, --debug', 'debug mode')
+  .description('Deployment this project to meteorup.cn microhost')
+  .action(function(argument , options) {
+
+    var pwd = path.resolve('.');
+
+    var actionsRegistry = new controller( pwd ,options);
+    if(actionsRegistry['push']) {
+      actionsRegistry['push']();
+    }
+
   }).on('--help', function() {
     console.log('  Examples:');
     console.log();
@@ -67,7 +125,7 @@ commander.command('install')
   .action(function(cmd , options) {
 
     var pwd = path.resolve('.');
-    console.log(options);
+    console.log("come soon.");
    
   }).on('--help', function() {
     console.log('  Examples:');
@@ -83,7 +141,8 @@ commander.command('add <package>')
   .action(function(cmd , options) {
 
     var pwd = path.resolve('.');
-    console.log(options);
+    // console.log(options);
+    console.log("come soon.");
    
   }).on('--help', function() {
     console.log('  Examples:');
@@ -99,7 +158,8 @@ commander.command('remove <package>')
   .action(function(cmd , options) {
 
     var pwd = path.resolve('.');
-    console.log(options);
+    // console.log(options);
+    console.log("come soon.");
    
   }).on('--help', function() {
     console.log('  Examples:');

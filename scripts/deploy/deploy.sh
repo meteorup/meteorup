@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-GPORT=`~/bin/generateNodePort <%=appName %>`
+METEOR_PORT=`~/bin/generateNodePort <%=appName %>`
 
-if [[ '$GPORT' == '' ]]; then
+if [[ '$METEOR_PORT' == '' ]]; then
   echo "Not Port"
   exit 1;
 fi
@@ -34,21 +34,8 @@ rm -Rf bundle.tar.gz
 cd bundle/programs/server/
 npm install
 
-##tar zxvf /opt/fibers-1.0.10.tar.gz -C /opt/<%= appName %>/current/
-# cp -Rf /opt/run_app.sh /opt/<%= appName %>/current/
-# We temporarly stopped the binary building
-# Instead we are building for linux 64 from locally
-# That's just like what meteor do
-# We can have option to turn binary building later on, 
-# but not now
-# start app
-# sudo bash config/start.sh
-# 
-# Honour already existing PORT setup
-# export PORT=${PORT:-80}
-# echo "$ROOT_URL"
 echo "=> Deploy meteor on <%=appName %>.yijianapp.com"
 node --version
 cd $APP_DIR
-sed -i 's/13000/'$GPORT'/g' app.json
+sed -i 's/13000/'$METEOR_PORT'/g' app.json
 ~/.nvm/v0.10.45/bin/pm2 start app.json

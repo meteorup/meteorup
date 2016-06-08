@@ -6,12 +6,12 @@
       "log_date_format": "YYYY-MM-DD",
       "exec_mode": "fork_mode",
       "env": {
-        "PORT": 13000,
+        "PORT": PORT10000,
         "MONGO_URL": "mongodb://127.0.0.1:27017/<%= appName %>",
-        "ROOT_URL": "http://<%= appName %>.yijianapp.com/",
-        "BIND_IP": "127.0.0.1"
+        "ROOT_URL": "http://<%= appName %>.meteorup.cn/",
+        "BIND_IP": "127.0.0.1",
         <% for(var key in env) { %>
-        "<%- key %>"="<%- env[key] %>"
+        "<%- key %>": "<%- env[key] %>",
         <% } %>
       }
     }
