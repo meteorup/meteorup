@@ -27,5 +27,12 @@
   "bugs": {
     "url": "https://github.com/romejiang/meteorup/issues"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "0.20.x",
+    "debug": "2.x.x",
+    "nodemiral": "1.x.x",
+    "underscore": "1.x.x",
+    "uuid": "2.x.x"
+  }
 }

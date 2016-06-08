@@ -16,19 +16,19 @@ $ npm install meteorup -g
 
 *npm is a builtin CLI when you install Node.js - [Installing Node.js with NVM](https://keymetrics.io/2015/02/03/installing-node-js-and-io-js-with-nvm/)*
 
-## Deploy an application
+## Deployment this project to meteorup.cn microhost ( like Galaxy )
 
 ```bash
 $ meteorup deploy
 ```
 
-## Setup an application to your private server
+## Configuration runtime environments on private server
 
 ```bash
 $ meteorup setup
 ```
 
-## Deploy an application to your private server
+## Deployment a project to private server
 
 ```bash
 $ meteorup push
