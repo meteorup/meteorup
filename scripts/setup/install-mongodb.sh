@@ -32,8 +32,6 @@ i*86)
 esac
 
 
-
-
 listen=`netstat -na|grep 27017|grep LISTEN| awk '{print $6}'`
 
 if [ -n "$listen" ]; then
@@ -56,13 +54,11 @@ EOL
     sudo chkconfig mongod on
 
     sleep 3
-    # sudo service mongod start
     mongod -f /etc/mongod.conf &
     
 
 elif [ "$OS" == "Ubuntu" ]; then
     echo "Ubuntu"
-    # export LC_ALL=C
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
     if [ "$VER" == "14.04" ]; then
     	
@@ -77,30 +73,9 @@ elif [ "$OS" == "Ubuntu" ]; then
 	sudo DEBIAN_FRONTEND=noninteractive apt-get update
 	sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mongodb-org
 
-    # mkdir -p /data/db
 	sleep 3
-    # sudo service mongod start
     mongod -f /etc/mongod.conf &
 
 else
     echo "Other"
 fi
-
-
-# we use this data directory for the backward compatibility
-# older mup uses mongodb from apt-get and they used this data directory
-# sudo mkdir -p /var/lib/mongodb
-
-# sudo docker pull mongo:latest
-# set +e
-# sudo docker rm -f mongodb
-# set -e
-
-# sudo docker run \
-#   -d \
-#   --restart=always \
-#   --publish=127.0.0.1:27017:27017 \
-#   --volume=/var/lib/mongodb:/data/db \
-#   --volume=/opt/mongodb/mongodb.conf:/mongodb.conf \
-#   --name=mongodb \
-#   mongo mongod -f /mongodb.conf

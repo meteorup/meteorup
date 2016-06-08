@@ -1,6 +1,13 @@
 #!/bin/bash
 set -e
 
+## check nvm 
+if [ -z "$NVM_DIR" ]; then
+  NVM_DIR="$HOME/.nvm"
+fi
+
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
 alias npm="npm --registry=https://registry.npm.taobao.org \
 --cache=$HOME/.npm/.cache/cnpm \
 --disturl=https://npm.taobao.org/dist \
@@ -31,4 +38,4 @@ npm install
 cd $APP_DIR
 node --version
 echo "=> Deploy meteor on <%=appName %>"
-~/.nvm/v0.10.45/bin/pm2 start app.json
+pm2 start app.json

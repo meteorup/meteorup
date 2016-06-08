@@ -37,9 +37,11 @@ if [ "$OS" == "CentOS" ]; then
     echo "CentOS"
     sudo yum -y install curl
     sudo yum -y install net-tools
+    sudo yum -y install gcc-c++
 elif [ "$OS" == "Ubuntu" ]; then
     echo "Ubuntu"
     sudo apt-get -y install curl
+    sudo apt-get -y install g++ 
 else
     echo "Other"
 fi

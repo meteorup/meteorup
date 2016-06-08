@@ -75,8 +75,8 @@ commander.command('deploy <project-name>')
 
 // 配置服务器运行环境
 commander.command('setup')
-  .description('Installation configuration server runtime environments')
-  .action(function(argument , options) {
+  .description('Configuration runtime environments on private server')
+  .action(function(options) {
 
     var pwd = path.resolve('.');
 
@@ -88,7 +88,7 @@ commander.command('setup')
   }).on('--help', function() {
     console.log('  Examples:');
     console.log();
-    console.log('    $ meteorup setup  # Install meteor ');
+    console.log('    $ meteorup setup #  configuration your server');
     console.log();
   }
 );
@@ -98,10 +98,11 @@ commander.command('setup')
 commander.command('push')
   .option('-m, --mobile-settings <mobile-settings.json>', 'Set mobile-settings from json file')
   .option('-d, --debug', 'debug mode')
-  .description('Deployment this project to meteorup.cn microhost')
-  .action(function(argument , options) {
+  .description('Deployment a project to private server')
+  .action(function(options) {
 
     var pwd = path.resolve('.');
+    // console.log(options);
 
     var actionsRegistry = new controller( pwd ,options);
     if(actionsRegistry['push']) {
@@ -111,9 +112,9 @@ commander.command('push')
   }).on('--help', function() {
     console.log('  Examples:');
     console.log();
-    console.log('    $ meteorup deploy appName  # Deployment to http://appName.meteorup.cn ');
+    console.log('    $ meteorup push  # config package.js ');
     console.log();
-    console.log('    $ meteorup deploy appName --env env.json');
+    console.log('    $ meteorup push');
     console.log();
   }
 );
