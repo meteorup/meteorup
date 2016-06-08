@@ -36,7 +36,7 @@ $ meteorup push
 
 ## Setup and Deploy to your private server for config file
 write to package.json file.
-```json
+```js
 {
     "server": {
         "host": "182.92.11.131",
