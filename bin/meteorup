@@ -35,6 +35,7 @@ commander.on('--help', function() {
 // 部署到meteorup
 commander.command('deploy <project-name>')
   .option('-m, --mobile-settings <mobile-settings.json>', 'Set mobile-settings from json file')
+  .option('-s, --server-only', 'server only')
   .option('-e, --env <env.json>', 'Set environment variables from json file')
   .option('-d, --debug', 'debug mode')
   .description('Deployment this project to meteorup.cn microhost')
@@ -97,6 +98,7 @@ commander.command('setup')
 // 部署到私有的服务器上
 commander.command('push')
   .option('-m, --mobile-settings <mobile-settings.json>', 'Set mobile-settings from json file')
+  .option('-s, --server-only', 'server only')
   .option('-d, --debug', 'debug mode')
   .description('Deployment a project to private server')
   .action(function(options) {

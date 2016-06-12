@@ -34,8 +34,8 @@ rm -Rf bundle.tar.gz
 cd bundle/programs/server/
 npm install
 
-echo "=> Deploy meteor on <%=appName %>.yijianapp.com"
+echo "=> Deploy meteor on <%=appName %>.meteorup.cn"
 node --version
 cd $APP_DIR
-sed -i 's/13000/'$METEOR_PORT'/g' app.json
+sed -i 's/PORT10000/'$METEOR_PORT'/g' app.json
 ~/.nvm/v0.10.45/bin/pm2 start app.json

@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+var pm2 = require('pm2');
+var jsonFile = '/home/www/lua/config.json';
+var seeks = require(jsonFile);
+var fs = require('fs');
+var path = require('path');
+var lives = [];
+
+pm2.connect(function(err) {
+  if (err) {
+    console.error(err);
+    pm2.disconnect();
+    process.exit(2);
+  }
+  
+  pm2.list(function(err, processDescriptionList) {
+    if (err) {
+      console.error(err);
+      pm2.disconnect();
+      process.exit(2);
+    }
+    
+    processDescriptionList.forEach(function(pd){
+      var stemp = new Date().getTime();
+      var live = stemp - pd.pm2_env.pm_uptime;
+      if ( (live / 1000 / 60 /60 ) > 24 ) {
+        pm2.delete(pd.name, function(err){
+          if (err) {
+            console.error(err);
+          }
+        });
+      }else{
+        lives.push(pd.name);
+      }
+    });
+    // console.log(lives);
+    for (var seek in seeks) {
+      var islive = false;
+      lives.forEach(function(name){
+        if (seek == name) {
+          islive = true;
+        }
+      });
+      if (!islive) {
+        delete seeks[seek];
+      }
+    }
+    console.log(seeks);
+    fs.writeFile(
+      jsonFile,
+      JSON.stringify(seeks),
+      function (err) {
+        if(err)
+          console.log(err);
+      }
+    );
+
+    pm2.disconnect();
+  });
+});
