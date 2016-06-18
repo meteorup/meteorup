@@ -3,7 +3,7 @@
     "meteorup": "./bin/meteorup"
   },
   "name": "meteorup",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Meteorup is a meteor enhancement tools",
   "main": "index.js",
   "scripts": {
