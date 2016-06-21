@@ -53,22 +53,16 @@ write to package.json file.
     "setup": {
 		// Install MongoDB on the server. Does not destroy the local MongoDB on future setups
 		"mongo": true,
-		// Install Docker on the server.
-		"docker": true,
 		// Application server path .  must in /usr /opt /home /alidata directory.
 		"path": "/usr/local/meteorup"
     },
     "deploy": {
 		// Application name (no spaces).
 		"appName": "best",
-		// use server docker image name. 
-		// defualt : meteorhacks/meteord:base
-		// "dockerImage": "index.alauda.cn/romejiang/meteor"
-		"dockerImage": "romejiang/meteor:v53",
 		// Configure environment
 		// ROOT_URL must be set to your correct domain (https or http)
 	    "env": {
-			"YJENV": "test",
+			"YJENV": "test", // customize environment
             "MONGO_URL": "mongodb://127.0.0.1:27017/best",
 			"PORT": 8181,
 			"ROOT_URL": "http://182.92.11.131:8181"
