@@ -2,6 +2,8 @@
 
 Meteorup is a meteor enhancement tools.
 
+[中文说明文档](http://meteorup.cn/)
+
 Starting an application in production mode is as easy as:
 
 ```bash
@@ -19,8 +21,10 @@ $ npm install meteorup -g
 ## Deployment this project to meteorup.cn microhost ( like Galaxy )
 
 ```bash
-$ meteorup deploy
+$ meteorup deploy AppName
 ```
+
+Visit http://AppName.meteorup.cn after a successful deployment
 
 ## Configuration runtime environments on private server
 
@@ -28,11 +32,15 @@ $ meteorup deploy
 $ meteorup setup
 ```
 
+install on your server NVM, nodejs, pm2, mongodb
+
 ## Deployment a project to private server
 
 ```bash
 $ meteorup push
 ```
+
+Visit ROOT_URL after a successful deployment
 
 ## Setup and Deploy to your private server for config file
 write to package.json file.
@@ -41,26 +49,26 @@ write to package.json file.
     "server": {
         "host": "182.92.11.131",
         "username": "root",
-        // "password": "password",
-        // or pem file (ssh based authentication)
-        // WARNING: Keys protected by a passphrase are not supported
+        "//password": "password",
+        "//":" or pem file (ssh based authentication)",
+        "//": "WARNING: Keys protected by a passphrase are not supported",
         "pem": "~/.ssh/id_rsa",
-        // Also, for non-standard ssh port use this
+        "//":" Also, for non-standard ssh port use this",
         "sshOptions": { "port" : 22 },
-        // server specific environment variables
+        "//":" server specific environment variables",
         "env": {}
     },
     "setup": {
-		// Install MongoDB on the server. Does not destroy the local MongoDB on future setups
+		"//": "Install MongoDB on the server. Does not destroy the local MongoDB on future setups",
 		"mongo": true,
-		// Application server path .  must in /usr /opt /home /alidata directory.
+		"//": "Application server path .  must in /usr /opt /home /alidata directory.",
 		"path": "/usr/local/meteorup"
     },
     "deploy": {
-		// Application name (no spaces).
+		"//": "Application name (no spaces).",
 		"appName": "best",
-		// Configure environment
-		// ROOT_URL must be set to your correct domain (https or http)
+		"//": "Configure environment",
+		"//": "ROOT_URL must be set to your correct domain (https or http)",
 	    "env": {
 			"YJENV": "test", // customize environment
             "MONGO_URL": "mongodb://127.0.0.1:27017/best",
@@ -71,13 +79,22 @@ write to package.json file.
 }
 ```
 
-
 ## Update Meteorup
 
 ```bash
 # reinstall latest meteorup version
 $ npm install meteorup -g
 ```
+
+#FAQ
+
+### sudo: sorry, you must have a tty to run sudo
+
+```
+sudo vi /etc/sudoers
+#Default requiretty
+```
+either comment it out the line or delete the line
 
 
 ## License
