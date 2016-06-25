@@ -3,7 +3,7 @@
     "meteorup": "./bin/meteorup"
   },
   "name": "meteorup",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "Meteorup is a meteor enhancement tools",
   "main": "index.js",
   "scripts": {
@@ -30,15 +30,16 @@
   "license": "MIT",
   "dependencies": {
     "archiver": "0.20.x",
-    "debug": "2.x.x",
-    "nodemiral": "1.x.x",
-    "underscore": "1.x.x",
-    "commander": "2.9.x",
-    "cjson": "0.4.x",
-    "rimraf": "2.5.x",
     "async": "^1.5.0",
+    "cjson": "0.4.x",
     "colors": "1.1.x",
+    "commander": "2.9.x",
+    "debug": "2.x.x",
+    "executive": "^1.1.5",
+    "nodemiral": "1.x.x",
     "progress": "1.1.x",
+    "rimraf": "2.5.x",
+    "underscore": "1.x.x",
     "uuid": "2.x.x"
   }
 }

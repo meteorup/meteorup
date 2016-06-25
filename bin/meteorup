@@ -121,56 +121,99 @@ commander.command('push')
   }
 );
 
+// logs
+commander.command('logs')
+  .option('-l, --lines <lines>', 'output the last N lines, instead of the last 50 by default')
+  .description('Print logs on server')
+  .action(function(options) {
+
+    var pwd = path.resolve('.');
+    // console.log(options);
+
+    var actionsRegistry = new controller( pwd ,options);
+    if(actionsRegistry['logs']) {
+      actionsRegistry['logs']();
+    }
+
+  }).on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ meteorup logs  ');
+    console.log();
+    console.log('    $ meteorup logs -t 100');
+    console.log();
+  }
+);
+// logs
+commander.command('mongo')
+  .description('Connection to a remote mongo database')
+  .action(function(options) {
+
+    var pwd = path.resolve('.');
+    // console.log(options);
+
+    var actionsRegistry = new controller( pwd ,options);
+    if(actionsRegistry['mongo']) {
+      actionsRegistry['mongo']();
+    }
+
+  }).on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ meteorup mongo');
+    console.log();
+  }
+);
 // 安装meteor
-commander.command('install')
-  .option('--verbose', 'verbose mode')
-  .description('Faster install meteor from meteorup mirror server')
-  .action(function(cmd , options) {
+// commander.command('install')
+//   .option('--verbose', 'verbose mode')
+//   .description('Faster install meteor from meteorup mirror server')
+//   .action(function(cmd , options) {
 
-    var pwd = path.resolve('.');
-    console.log("come soon.");
+//     var pwd = path.resolve('.');
+//     console.log("come soon.");
    
-  }).on('--help', function() {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ meteorup install  # Install meteor ');
-    console.log();
-  }
-);
+//   }).on('--help', function() {
+//     console.log('  Examples:');
+//     console.log();
+//     console.log('    $ meteorup install  # Install meteor ');
+//     console.log();
+//   }
+// );
 
-// 添加包
-commander.command('add <package>')
-  .description('Add a package to this project.')
-  .action(function(cmd , options) {
+// // 添加包
+// commander.command('add <package>')
+//   .description('Add a package to this project.')
+//   .action(function(cmd , options) {
 
-    var pwd = path.resolve('.');
-    // console.log(options);
-    console.log("come soon.");
+//     var pwd = path.resolve('.');
+//     // console.log(options);
+//     console.log("come soon.");
    
-  }).on('--help', function() {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ meteorup add romejiang:wechat-pay');
-    console.log();
-  }
-);
+//   }).on('--help', function() {
+//     console.log('  Examples:');
+//     console.log();
+//     console.log('    $ meteorup add romejiang:wechat-pay');
+//     console.log();
+//   }
+// );
 
-// 添加包
-commander.command('remove <package>')
-  .description('Remove a package from this project.')
-  .action(function(cmd , options) {
+// // 添加包
+// commander.command('remove <package>')
+//   .description('Remove a package from this project.')
+//   .action(function(cmd , options) {
 
-    var pwd = path.resolve('.');
-    // console.log(options);
-    console.log("come soon.");
+//     var pwd = path.resolve('.');
+//     // console.log(options);
+//     console.log("come soon.");
    
-  }).on('--help', function() {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ meteorup remove romejiang:wechat-pay');
-    console.log();
-  }
-);
+//   }).on('--help', function() {
+//     console.log('  Examples:');
+//     console.log();
+//     console.log('    $ meteorup remove romejiang:wechat-pay');
+//     console.log();
+//   }
+// );
 
 
 

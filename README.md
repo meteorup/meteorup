@@ -38,6 +38,8 @@ install on your server NVM, nodejs, pm2, mongodb
 
 ```bash
 $ meteorup push
+or 
+$ meteorup push -s // meteor build --server-only
 ```
 
 Visit ROOT_URL after a successful deployment
@@ -45,7 +47,7 @@ Visit ROOT_URL after a successful deployment
 ## Setup and Deploy to your private server for config file
 write to package.json file.
 ```js
-{
+
     "server": {
         "host": "182.92.11.131",
         "username": "root",
@@ -76,8 +78,23 @@ write to package.json file.
 			"ROOT_URL": "http://182.92.11.131:8181"
 		}
     } 
-}
+
 ```
+
+## Print logs on server
+
+```bash
+$ meteorup logs
+or
+$ meteorup logs -l 100
+```
+
+## Connection to a remote mongo database
+
+```bash
+$ meteorup mongo
+```
+
 
 ## Update Meteorup
 

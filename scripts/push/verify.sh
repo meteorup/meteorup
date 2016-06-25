@@ -6,7 +6,7 @@ cd $APP_DIR
 
 revert_app (){
   ~/.nvm/v0.10.45/bin/pm2 logs $APPNAME 1>&2
-  echo 
+  echo ""
   echo "To see more logs type 'mup logs --tail=50'"
   echo ""
 }
@@ -14,7 +14,12 @@ revert_app (){
 elaspsed=0
 while [[ true ]]; do
   elaspsed=$((elaspsed+1))
-  curl $APPNAME.meteorup.cn && exit 0
+
+  if [ curl $APPNAME.meteorup.cn ]; then
+    revert_app
+    exit 0
+  fi
+
   sleep 1
 
   if [ "$elaspsed" == "$DEPLOY_CHECK_WAIT_TIME" ]; then
