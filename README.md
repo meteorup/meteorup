@@ -77,7 +77,8 @@ write to package.json file.
 			"PORT": 8181,
 			"ROOT_URL": "http://182.92.11.131:8181"
 		}
-    } 
+    },
+    "notice": "Well done"
 
 ```
 
@@ -93,6 +94,13 @@ $ meteorup logs -l 100
 
 ```bash
 $ meteorup mongo
+```
+
+
+## Custom completion notice voice
+config in package.json file. default would say “finished”
+```bash
+$ "notice": "Well done"
 ```
 
 
