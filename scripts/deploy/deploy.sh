@@ -1,5 +1,7 @@
 #!/bin/bash
+set -x
 set -e
+shopt -s expand_aliases
 
 METEOR_PORT=`~/bin/generateNodePort <%=appName %>`
 
@@ -8,7 +10,7 @@ if [[ '$METEOR_PORT' == '' ]]; then
   exit 1;
 fi
 
-alias npm="npm --registry=https://registry.npm.taobao.org \
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
 --cache=$HOME/.npm/.cache/cnpm \
 --disturl=https://npm.taobao.org/dist \
 --userconfig=$HOME/.cnpmrc"
@@ -32,7 +34,7 @@ cd current/
 tar xzf bundle.tar.gz
 rm -Rf bundle.tar.gz
 cd bundle/programs/server/
-npm install
+cnpm install
 
 echo "=> Deploy meteor on <%=appName %>.meteorup.cn"
 node --version

@@ -1,11 +1,12 @@
 #!/bin/bash
 
 set -x
+set -e
 
-sudo mkdir -p <%= rootPath %><%= appName %>/
-sudo mkdir -p <%= rootPath %><%= appName %>/config
-sudo mkdir -p <%= rootPath %><%= appName %>/tmp
-sudo mkdir -p <%= rootPath %>mongodb
+mkdir -p <%= rootPath %><%= appName %>/
+mkdir -p <%= rootPath %><%= appName %>/config
+mkdir -p <%= rootPath %><%= appName %>/tmp
+mkdir -p <%= rootPath %>mongodb
 
-sudo chown ${USER} <%= rootPath %><%= appName %> -R
-sudo chown ${USER} <%= rootPath %>mongodb -R
+chown ${USER} <%= rootPath %><%= appName %> -R
+chown ${USER} <%= rootPath %>mongodb -R

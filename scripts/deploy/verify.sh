@@ -5,7 +5,7 @@ APP_DIR=/usr/local/meteorup/<%=appName %>
 cd $APP_DIR
 
 revert_app (){
-  ~/.nvm/v0.10.45/bin/pm2 logs $APPNAME 1>&2
+  tail -n 50  '~/.pm2/logs/$APPNAME-out.log' 1>&2
   echo 
   echo "To see more logs type 'mup logs --tail=50'"
   echo ""

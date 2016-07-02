@@ -164,6 +164,26 @@ commander.command('mongo')
     console.log();
   }
 );
+
+commander.command('test')
+  .description('Connection to a remote mongo database')
+  .action(function(options) {
+
+    var pwd = path.resolve('.');
+    // console.log(options);
+
+    var actionsRegistry = new controller( pwd ,options);
+    if(actionsRegistry['test']) {
+      actionsRegistry['test']();
+    }
+
+  }).on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ meteorup mongo');
+    console.log();
+  }
+);
 // 安装meteor
 // commander.command('install')
 //   .option('--verbose', 'verbose mode')
