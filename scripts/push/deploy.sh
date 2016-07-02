@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set -x
+set -x
 set -e
 shopt -s expand_aliases
 
@@ -36,7 +36,7 @@ cd $APP_DIR
 node --version
 echo "=> Deploy meteor on <%=appName %>"
 
-pm2 stop app.json
+pm2 stop app.json -s
 sleep 1
 
 listen=`netstat -na|grep ':<%=rootPort%> '|grep LISTEN| awk '{print $6}'`
