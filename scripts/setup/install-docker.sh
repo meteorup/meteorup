@@ -39,7 +39,7 @@ if [ ! "$haveDocker" ]; then
 	## install curl 
 	if [ "$OS" == "CentOS" ]; then
 	    echo "CentOS"
-	    sudo yum -y install curl
+	    yum -y install curl
 	    # Install docker
 		curl -fsSL https://get.docker.com/ | sh
 		sleep 3
@@ -47,7 +47,7 @@ if [ ! "$haveDocker" ]; then
 
 	elif [ "$OS" == "Ubuntu" ]; then
 	    echo "Ubuntu"
-	    sudo apt-get install curl
+	    apt-get install curl
 	    # Install docker
 		curl -fsSL https://get.docker.com/ | sh
 	else
