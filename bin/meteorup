@@ -33,13 +33,13 @@ commander.on('--help', function() {
 });
 
 // 部署到meteorup
-commander.command('deploy <project-name>')
+commander.command('deploy <project-name> <private-key>')
   .option('-m, --mobile-settings <mobile-settings.json>', 'Set mobile-settings from json file')
   .option('-s, --server-only', 'server only')
   .option('-e, --env <env.json>', 'Set environment variables from json file')
   .option('-d, --debug', 'debug mode')
   .description('Deployment this project to meteorup.cn microhost')
-  .action(function(argument , options) {
+  .action(function(argument , privateKey ,options) {
 
     var pwd = path.resolve('.');
 
@@ -50,8 +50,9 @@ commander.command('deploy <project-name>')
     // console.log("commander");// 整个Comm
     // console.log(commander); //整个Comm
     // console.log("options"); //选项
+    // console.log(privateKey); //选项
     // console.log(options); //选项
-    // 
+    
     // for( var opt in options){
     //   console.log("============");
     //   console.log(opt);
@@ -61,7 +62,7 @@ commander.command('deploy <project-name>')
 
     var actionsRegistry = new controller( pwd ,options);
     if(actionsRegistry['deploy']) {
-      actionsRegistry['deploy'](argument);
+      actionsRegistry['deploy'](argument , privateKey);
     }
 
   }).on('--help', function() {
