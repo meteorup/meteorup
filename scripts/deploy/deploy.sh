@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+# set -x
 set -e
 shopt -s expand_aliases
 
@@ -9,6 +9,7 @@ shopt -s expand_aliases
 
 # METEOR_PORT=`~/bin/generateNodePort <%=appName %>`
 METEOR_PORT=`curl "http://dashboard.fami2x.com/api?name=<%=appName %>&key=<%=privateKey%>"`
+# METEOR_PORT="$(echo -e "${FOO}" | tr -d '[[:space:]]')"
 
 if [[ '$METEOR_PORT' == '' ]]; then
   echo "Not permission, please visit http://dashboard.fami2x.com"
@@ -17,7 +18,7 @@ fi
 METEOR_PORT_LEN=`echo $METEOR_PORT | awk '{print length($0)}'`
 
 if [ 4 -lt $METEOR_PORT_LEN ]; then
-  echo "Service error, please try again later"
+  echo "${METEOR_PORT}, please visit http://dashboard.fami2x.com"
   exit 1;
 fi
 

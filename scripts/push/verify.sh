@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -x
-# set -e
+# set -x
+set -e
 
 APPNAME=<%= appName %>
 DEPLOY_CHECK_WAIT_TIME=<%= deployCheckWaitTime %>
