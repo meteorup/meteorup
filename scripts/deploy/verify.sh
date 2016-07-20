@@ -1,24 +1,30 @@
+#!/bin/bash
+
+set -x
+# set -e
+
 APPNAME=<%= appName %>
 DEPLOY_CHECK_WAIT_TIME=<%= deployCheckWaitTime %>
-APP_DIR=/usr/local/meteorup/<%=appName %>
-
-cd $APP_DIR
 
 revert_app (){
-  tail -n 50  '~/.pm2/logs/$APPNAME-out.log' 1>&2
-  echo 
-  echo "To see more logs type 'mup logs --tail=50'"
-  echo ""
+  LOGFILE=`pm2 show $APPNAME|grep 'out log path'|awk '{print $6}'`
+  if [ "$LOGFILE"x != ""x ];then
+    tail -n 50  "$LOGFILE"
+    echo ""
+    echo "To see more logs type 'meteorup logs'"
+    echo ""
+  fi
+  echo "Unable to access $APPNAME.fami2x.com"
 }
 
 elaspsed=0
 while [[ true ]]; do
   elaspsed=$((elaspsed+1))
-  curl $APPNAME.meteorup.cn && exit 0
+  curl $APPNAME.fami2x.com && exit 0
   sleep 1
 
   if [ "$elaspsed" == "$DEPLOY_CHECK_WAIT_TIME" ]; then
     revert_app
-    exit 0
+    exit 1
   fi
 done

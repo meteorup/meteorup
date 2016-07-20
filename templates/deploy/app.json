@@ -8,11 +8,7 @@
       "env": {
         "PORT": PORT10000,
         "MONGO_URL": "mongodb://127.0.0.1:27017/<%= appName %>",
-        "ROOT_URL": "http://<%= appName %>.meteorup.cn/",
-        "BIND_IP": "127.0.0.1",
-        <% for(var key in env) { %>
-        "<%- key %>": "<%- env[key] %>",
-        <% } %>
+        "ROOT_URL": "http://<%= appName %>.fami2x.com/"
       }
     }
   ]
