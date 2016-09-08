@@ -32,6 +32,10 @@ sed -i 's/"resolved.*//g' npm-shrinkwrap.json
 sed -i 's/\("from.*\),$/\1/g' npm-shrinkwrap.json
 cnpm install
 
+## fix bcrypt bug
+cd npm/node_modules/meteor/npm-bcrypt/node_modules/bcrypt/
+node-gyp rebuild
+
 cd $APP_DIR
 node --version
 echo "=> Deploy meteor on <%=appName %>"

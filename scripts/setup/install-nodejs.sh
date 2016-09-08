@@ -13,17 +13,19 @@ nvm_has() {
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
 export NVM_IOJS_ORG_MIRROR=http://npm.taobao.org/mirrors/iojs
 ## check node
+# NODE_VERSION='v0.10.45'
+NODE_VERSION='v4.4.7'
 if nvm_has "node" ; then
     version=`node --version`;
-    if [[ "$version"x != "v0.10.45"x ]]; then
-        echo "install node v0.10.45"
-        nvm install v0.10.45
-        nvm alias default v0.10.45
-        nvm use v0.10.45
+    if [[ "$version"x != "$NODE_VERSION"x ]]; then
+        echo "install node $NODE_VERSION"
+        nvm install $NODE_VERSION
+        nvm alias default $NODE_VERSION
+        nvm use $NODE_VERSION
     fi
 else
     echo "install node"
-    nvm install v0.10.45
-    nvm alias default v0.10.45
-    nvm use v0.10.45
+    nvm install $NODE_VERSION
+    nvm alias default $NODE_VERSION
+    nvm use $NODE_VERSION
 fi
