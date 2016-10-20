@@ -6,9 +6,9 @@
       "log_date_format": "YYYY-MM-DD",
       "exec_mode": "fork_mode",
       "env": {
-        "PORT": PORT10000,
+        "PORT": 10000,
         "MONGO_URL": "mongodb://127.0.0.1:27017/<%= appName %>",
-        "ROOT_URL": "http://<%= appName %>.fami2x.com/"
+        "ROOT_URL": "http://<%= appName %>.meteorup.cn/"
       }
     }
   ]

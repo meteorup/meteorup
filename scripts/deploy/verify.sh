@@ -14,13 +14,13 @@ revert_app (){
     echo "To see more logs type 'meteorup logs'"
     echo ""
   fi
-  echo "Unable to access $APPNAME.fami2x.com"
+  echo "Unable to access $APPNAME.meteorup.cn"
 }
 
 elaspsed=0
 while [[ true ]]; do
   elaspsed=$((elaspsed+1))
-  curl $APPNAME.fami2x.com && exit 0
+  curl $APPNAME.meteorup.cn && exit 0
   sleep 1
 
   if [ "$elaspsed" == "$DEPLOY_CHECK_WAIT_TIME" ]; then
