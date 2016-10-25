@@ -2,7 +2,7 @@
 
 Meteorup is a meteor enhancement tools.
 
-[中文说明文档](http://meteorup.cn/)
+[中文说明文档](http://blog.meteorup.cn/2016/05/27/meteorup-guide/)
 
 Starting an application in production mode is as easy as:
 
