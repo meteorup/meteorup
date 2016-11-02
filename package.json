@@ -3,7 +3,7 @@
     "meteorup": "./bin/meteorup"
   },
   "name": "meteorup",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Meteorup is a meteor enhancement tools",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "author": {
     "email": "romejiang@gmail.com",
-    "name": "Jinag Tao"
+    "name": "Stephen Jiang"
   },
   "keywords": [
     "meteor",
