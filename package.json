@@ -29,17 +29,20 @@
   },
   "license": "MIT",
   "dependencies": {
-    "archiver": "^1.0.0",
+    "archiver": "^1.2.0",
     "async": "^1.5.0",
     "cjson": "0.4.x",
     "colors": "1.1.x",
     "commander": "2.9.x",
     "debug": "2.x.x",
-    "executive": "^1.1.5",
+    "executive": "^1.1.7",
+    "i18n": "^0.8.3",
     "nodemiral": "1.x.x",
+    "ora": "^0.3.0",
     "progress": "1.1.x",
-    "rimraf": "2.5.x",
+    "request": "^2.76.0",
+    "rimraf": "^2.5.4",
     "underscore": "1.x.x",
-    "uuid": "2.x.x"
+    "uuid": "^2.0.3"
   }
 }
