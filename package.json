@@ -3,7 +3,7 @@
     "meteorup": "./bin/meteorup"
   },
   "name": "meteorup",
-  "version": "1.0.18",
+  "version": "2.0.0",
   "description": "Meteorup is a meteor enhancement tools",
   "main": "index.js",
   "scripts": {
@@ -44,5 +44,8 @@
     "rimraf": "^2.5.4",
     "underscore": "1.x.x",
     "uuid": "^2.0.3"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.7.4"
   }
 }

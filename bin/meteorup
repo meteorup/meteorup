@@ -3,7 +3,6 @@
 var fs        = require('fs');
 var pkg       = require('../package.json');
 var path      = require('path');
-var async     = require('async');
 var commander = require('commander');
 var controller   = require('../lib/controller');
 
@@ -19,23 +18,6 @@ commander.command('deploy <project-name> <private-key>')
 
     var pwd = path.resolve('.');
 
-    // console.log("projectName"); //project-name
-    // console.log(projectName); // project-name
-    // console.log("pwd"); //项目地址
-    // console.log(pwd); //项目地址
-    // console.log("commander");// 整个Comm
-    // console.log(commander); //整个Comm
-    // console.log("options"); //选项
-    // console.log(privateKey); //选项
-    // console.log(options); //选项
-    
-    // for( var opt in options){
-    //   console.log("============");
-    //   console.log(opt);
-    //   console.log("=");
-    //   console.log(options[opt]);
-    // }
-
     var actionsRegistry = new controller( pwd ,options);
     if(actionsRegistry['deploy']) {
       actionsRegistry['deploy'](projectName,privateKey);
@@ -50,118 +32,6 @@ commander.command('deploy <project-name> <private-key>')
     console.log();
   }
 );
-
-// 配置服务器运行环境
-commander.command('setup')
-  .description('Configuration runtime environments on private server')
-  .action(function(options) {
-
-    var pwd = path.resolve('.');
-
-    var actionsRegistry = new controller( pwd ,options);
-    if(actionsRegistry['setup']) {
-      actionsRegistry['setup']();
-    }
-   
-  }).on('--help', function() {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ meteorup setup #  configuration your server');
-    console.log();
-  }
-);
-
-
-// 部署到私有的服务器上
-commander.command('push')
-  .option('-m, --mobile-settings <mobile-settings.json>', 'Set mobile-settings from json file')
-  .option('-s, --server-only', 'server only')
-  .option('-d, --debug', 'debug mode')
-  .option('-b, --verbose', 'verbose mode')
-  .description('Deployment a project to private server')
-  .action(function(options) {
-
-    var pwd = path.resolve('.');
-    // console.log(options);
-
-    var actionsRegistry = new controller( pwd ,options);
-    if(actionsRegistry['push']) {
-      actionsRegistry['push']();
-    }
-
-  }).on('--help', function() {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ meteorup push  # config package.js ');
-    console.log();
-    console.log('    $ meteorup push');
-    console.log();
-  }
-);
-
-// logs
-commander.command('logs')
-  .option('-l, --lines <lines>', 'output the last N lines, instead of the last 50 by default')
-  .description('Print logs on server')
-  .action(function(options) {
-
-    var pwd = path.resolve('.');
-    // console.log(options);
-
-    var actionsRegistry = new controller( pwd ,options);
-    if(actionsRegistry['logs']) {
-      actionsRegistry['logs']();
-    }
-
-  }).on('--help', function() {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ meteorup logs  ');
-    console.log();
-    console.log('    $ meteorup logs -t 100');
-    console.log();
-  }
-);
-// logs
-// commander.command('mongo')
-//   .description('Connection to a remote mongo database')
-//   .action(function(options) {
-
-//     var pwd = path.resolve('.');
-//     // console.log(options);
-
-//     var actionsRegistry = new controller( pwd ,options);
-//     if(actionsRegistry['mongo']) {
-//       actionsRegistry['mongo']();
-//     }
-
-//   }).on('--help', function() {
-//     console.log('  Examples:');
-//     console.log();
-//     console.log('    $ meteorup mongo');
-//     console.log();
-//   }
-// );
-
-// commander.command('test')
-//   .description('Connection to a remote mongo database')
-//   .action(function(options) {
-
-//     var pwd = path.resolve('.');
-//     // console.log(options);
-
-//     var actionsRegistry = new controller( pwd ,options);
-//     if(actionsRegistry['test']) {
-//       actionsRegistry['test']();
-//     }
-
-//   }).on('--help', function() {
-//     console.log('  Examples:');
-//     console.log();
-//     console.log('    $ meteorup mongo');
-//     console.log();
-//   }
-// );
 
 commander.version(pkg.version)
   .usage('deplay project-name')
