@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  [中文版](https://github.com/meteorup/meteorup/blob/master/README.zh_CN.md)
+  <a href="https://github.com/meteorup/meteorup/blob/master/README.zh_CN.md">中文版</a>
 </p>
 
 ---

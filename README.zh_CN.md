@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  [English version](https://github.com/meteorup/meteorup/blob/master/README.md)
+  <a href="https://github.com/meteorup/meteorup/blob/master/README.md">English version</a>
 </p>
 
 ---
