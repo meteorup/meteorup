@@ -3,22 +3,24 @@
     "meteorup": "./bin/meteorup"
   },
   "name": "meteorup",
-  "version": "1.0.18",
+  "version": "2.0.0alpha",
   "description": "Meteorup is a meteor enhancement tools",
   "main": "index.js",
   "scripts": {
-    "test": "test/index.js"
+    "test": "test/index.js",
+    "prepublish": "npm run build:js && npm run isprod",
+    "postpublish": "npm run isdev",
+    "build": "npm run build:js",
+    "isprod": "sed -i '' 's/\\/src\\//\\/lib\\//g' bin/meteorup",
+    "isdev": "sed -i '' 's/\\/lib\\//\\/src\\//g' bin/meteorup",
+    "preisprod": "sed '/build_start/,/build_end/d' src/config.js > lib/config.js",
+    "build:js": "cp src/config.js lib/config.js && uglifyjs src/build.js -o lib/build.js -c -m && uglifyjs src/deploy.js -o lib/deploy.js -c -m && uglifyjs src/controller.js -o lib/controller.js -c -m"
   },
   "author": {
     "email": "romejiang@gmail.com",
     "name": "Stephen Jiang"
   },
-  "keywords": [
-    "meteor",
-    "enhancement",
-    "china",
-    "GFW"
-  ],
+  "keywords": ["meteor", "enhancement", "china", "GFW"],
   "homepage": "https://github.com/romejiang/meteorup",
   "repository": {
     "type": "git",
@@ -29,17 +31,23 @@
   },
   "license": "MIT",
   "dependencies": {
-    "archiver": "^1.0.0",
+    "archiver": "^1.2.0",
     "async": "^1.5.0",
     "cjson": "0.4.x",
     "colors": "1.1.x",
     "commander": "2.9.x",
     "debug": "2.x.x",
-    "executive": "^1.1.5",
+    "executive": "^1.1.7",
+    "i18n": "^0.8.3",
     "nodemiral": "1.x.x",
+    "ora": "^0.3.0",
     "progress": "1.1.x",
-    "rimraf": "2.5.x",
+    "request": "^2.76.0",
+    "rimraf": "^2.5.4",
     "underscore": "1.x.x",
-    "uuid": "2.x.x"
+    "uuid": "^2.0.3"
+  },
+  "devDependencies": {
+    "uglify-js": "^2.7.4"
   }
 }
