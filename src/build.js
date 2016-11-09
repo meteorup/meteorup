@@ -8,7 +8,7 @@ var archiver = require('archiver');
 // ====================================================
 exports.build = function(params, done) {
     var buildLocaltion = path.resolve('/tmp', uuid.v4());
-    var bundlePath = path.resolve(buildLocaltion, 'bundle.tar.gz');
+    // var bundlePath = path.resolve(buildLocaltion, 'bundle.tar.gz');
     //
     params.buildLocaltion = buildLocaltion;
     // console.log('  [meteorup.cn]'.magenta + ' - Build Project ' + params.appPath);
@@ -32,8 +32,8 @@ exports.build = function(params, done) {
     };
     // var meteorBuild = spawn("mkdir", ["-p",buildLocaltion+"/bundle"], options);
     var meteorBuild = spawn(executable, args, options);
-    var stdout = "";
-    var stderr = "";
+    // var stdout = "";
+    // var stderr = "";
     meteorBuild.stdout.pipe(process.stdout, {
       end: false
     });

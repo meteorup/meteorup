@@ -1,6 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var async = require('async');
+var config = require('./config');
 var request = require('request');
 var ProgressBar = require('progress');
 // ====================================================
@@ -10,13 +11,10 @@ exports.check = function(params, done) {
     params.spinner.text = '[meteorup.cn]'.magenta + ' - Authentication Project ' + params.appName;
     params.spinner.start();
     //
-    var url = 'http://www.meteorup.cn/deploy/check';
-    if (process.env.NODE_ENV === 'development') url = 'http://localhost:3000/deploy/check';
-    if (process.env.NODE_TEST === 'test') url = 'http://test.meteorup.cn/deploy/check';
+    var url = config.url() + 'deploy/check/' + params.appName + '/' + params.privateKey;
     //
-    url = url + '/' + params.appName + '/' + params.privateKey;
     request.post({
-      url,
+      url:url,
       encoding: 'utf8'
     }).on('data', function(chunk) {
       if (chunk == 'success') {
@@ -36,11 +34,8 @@ exports.check = function(params, done) {
 exports.upload = function(params, done) {
     var bundlePath = path.resolve(params.buildLocaltion, 'bundle.tar.gz');
     //
-    var url = 'http://www.meteorup.cn/deploy/upload';
-    if (process.env.NODE_ENV === 'development') url = 'http://localhost:3000/deploy/upload';
-    if (process.env.NODE_TEST === 'test') url = 'http://test.meteorup.cn/deploy/upload';
+    var url = config.url() + 'deploy/upload/' + params.appName + '/' + params.privateKey;
     //
-    url = url + '/' + params.appName + '/' + params.privateKey;
     var req = request.post(url, function(err, res, body) {
       if (err) {
         done(err);
@@ -79,13 +74,10 @@ exports.startup = function(params, done) {
     params.spinner.text = '[meteorup.cn]'.magenta + ' - Startup Project ' + params.appName;
     params.spinner.start();
     //
-    var url = 'http://www.meteorup.cn/deploy/startup';
-    if (process.env.NODE_ENV === 'development') url = 'http://localhost:3000/deploy/startup';
-    if (process.env.NODE_TEST === 'test') url = 'http://test.meteorup.cn/deploy/startup';
+    var url = config.url() + 'deploy/startup/' + params.appName + '/' + params.privateKey;
     //
-    url = url + '/' + params.appName + '/' + params.privateKey;
     request.post({
-      url,
+      url:url,
       encoding: 'utf8',
     }).on('data', function(chunk) {
       if (chunk == 'success') {
@@ -106,16 +98,13 @@ exports.watch = function(params, done) {
   params.spinner.text = '[meteorup.cn]'.magenta + ' - Verifying Project ' + params.appName;
   params.spinner.start();
   //
-  var url = 'http://www.meteorup.cn/deploy/watch';
-  if (process.env.NODE_ENV === 'development') url = 'http://localhost:3000/deploy/watch';
-  if (process.env.NODE_TEST === 'test') url = 'http://test.meteorup.cn/deploy/watch';
+  var url = config.url() + 'deploy/watch/' + params.appName + '/' + params.privateKey;
   //
-  url = url + '/' + params.appName + '/' + params.privateKey;
   async.detectSeries([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], function(item, callback) {
     // =================
     sleep(1000);
     request.post({
-      url,
+      url:url,
       encoding: 'utf8',
     }, function(err, httpResponse, body) {
       if (body == 'Running') {
@@ -131,12 +120,9 @@ exports.watch = function(params, done) {
       params.spinner.succeed();
       done(null, params);
     } else {
-      url = 'http://www.meteorup.cn/deploy/logs';
-      if (process.env.NODE_ENV === 'development') url = 'http://localhost:3000/deploy/logs';
-      if (process.env.NODE_TEST === 'test') url = 'http://test.meteorup.cn/deploy/logs';
-      url = url + '/' + params.appName + '/' + params.privateKey;
+      url = config.url() + 'deploy/logs/' + params.appName + '/' + params.privateKey;
       request.post({
-        url,
+        url:url,
         encoding: 'utf8',
       }).on('data', function(chunk) {
         done(new Error(chunk), params);

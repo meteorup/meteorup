@@ -3,9 +3,9 @@ var fs = require('fs');
 var ora = require('ora');
 var exec = require('executive');
 var async = require('async');
+var build = require('./build');
 var colors = require('colors');
 var rimraf = require('rimraf');
-var build = require('./build');
 global.notification = "finished";
 module.exports = Actions;
 //

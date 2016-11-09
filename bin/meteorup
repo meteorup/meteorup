@@ -4,7 +4,7 @@ var fs        = require('fs');
 var pkg       = require('../package.json');
 var path      = require('path');
 var commander = require('commander');
-var controller   = require('../lib/controller');
+var controller   = require('../src/controller');
 
 console.log(('Welcome to use meteorup service.').bold.blue);
 
