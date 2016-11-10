@@ -8,17 +8,16 @@ var ProgressBar = require('progress');
 //     测试项目和key
 // ====================================================
 exports.check = function(params, done) {
-    params.spinner.text = '[meteorup.cn]'.magenta + ' - Authentication Project ' + params.appName;
+    params.spinner.text = '[meteorup.cn]' + __('check', params.appName);
     params.spinner.start();
     //
     var url = config.url() + 'deploy/check/' + params.appName + '/' + params.privateKey;
     //
     request.post({
-      url:url,
+      url: url,
       encoding: 'utf8'
     }).on('data', function(chunk) {
       if (chunk == 'success') {
-        params.spinner.text = '[meteorup.cn]'.magenta + ' - Authentication Project ' + params.appName;
         params.spinner.succeed();
         done(null, params);
       } else {
@@ -41,7 +40,7 @@ exports.upload = function(params, done) {
         done(err);
       } else {
         if (body == 'success') {
-          params.spinner.text = '[meteorup.cn]'.magenta + ' - Upload Project ';
+          params.spinner.text = '[meteorup.cn]' + __('upload');
           params.spinner.succeed();
           done(null, params);
         } else {
@@ -55,7 +54,7 @@ exports.upload = function(params, done) {
     // form.append('key', params.privateKey);
     form.append('archive', fs.createReadStream(bundlePath));
     form.getLength(function(err, size) {
-      bar = new ProgressBar('  [meteorup.cn]'.magenta + ' - Upload Project [:bar] :percent :etas', {
+      bar = new ProgressBar('  [meteorup.cn]' + __('upload') + ' [:bar] :percent :etas', {
         complete: '=',
         incomplete: ' ',
         width: 20,
@@ -71,17 +70,16 @@ exports.upload = function(params, done) {
   //     启动项目
   // ====================================================
 exports.startup = function(params, done) {
-    params.spinner.text = '[meteorup.cn]'.magenta + ' - Startup Project ' + params.appName;
+    params.spinner.text = '[meteorup.cn]' + __('startup', params.appName);
     params.spinner.start();
     //
     var url = config.url() + 'deploy/startup/' + params.appName + '/' + params.privateKey;
     //
     request.post({
-      url:url,
+      url: url,
       encoding: 'utf8',
     }).on('data', function(chunk) {
       if (chunk == 'success') {
-        params.spinner.text = '[meteorup.cn]'.magenta + ' - Startup Project ' + params.appName;
         params.spinner.succeed();
         done(null, params);
       } else {
@@ -95,8 +93,9 @@ exports.startup = function(params, done) {
   //     watch
   // ====================================================
 exports.watch = function(params, done) {
-  params.spinner.text = '[meteorup.cn]'.magenta + ' - Verifying Project ' + params.appName;
+  params.spinner.text = '[meteorup.cn]' + __('verify', params.appName);
   params.spinner.start();
+  var errorCode;
   //
   var url = config.url() + 'deploy/watch/' + params.appName + '/' + params.privateKey;
   //
@@ -104,11 +103,16 @@ exports.watch = function(params, done) {
     // =================
     sleep(1000);
     request.post({
-      url:url,
+      url: url,
       encoding: 'utf8',
     }, function(err, httpResponse, body) {
       if (body == 'Running') {
         callback(true);
+      } else if (body == 'notFound') {
+        errorCode = body;
+        callback(true);
+      } else {
+        callback(false);
       }
     });
     // ================
@@ -117,12 +121,20 @@ exports.watch = function(params, done) {
     //     超时，获取 pod 状态
     // ====================================================
     if (result) {
-      params.spinner.succeed();
-      done(null, params);
+      if (errorCode) {
+        params.spinner.text = '[meteorup.cn]' + __('verifyfailure', params.appName).red;
+        params.spinner.fail();
+        done(new Error(errorCode), params);
+      } else {
+        params.spinner.succeed();
+        done(null, params);
+      }
     } else {
+      params.spinner.text = '[meteorup.cn]' + __('verifyfailure', params.appName).red;
+      params.spinner.fail();
       url = config.url() + 'deploy/logs/' + params.appName + '/' + params.privateKey;
       request.post({
-        url:url,
+        url: url,
         encoding: 'utf8',
       }).on('data', function(chunk) {
         done(new Error(chunk), params);

@@ -8,11 +8,9 @@ var archiver = require('archiver');
 // ====================================================
 exports.build = function(params, done) {
     var buildLocaltion = path.resolve('/tmp', uuid.v4());
-    // var bundlePath = path.resolve(buildLocaltion, 'bundle.tar.gz');
     //
     params.buildLocaltion = buildLocaltion;
-    // console.log('  [meteorup.cn]'.magenta + ' - Build Project ' + params.appPath);
-    params.spinner.text = '[meteorup.cn]'.magenta + ' - Build Project ' + params.appPath;
+    params.spinner.text = '[meteorup.cn]' + __('build', params.appPath);
     params.spinner.start();
     //
     var executable = "meteor";
@@ -32,8 +30,6 @@ exports.build = function(params, done) {
     };
     // var meteorBuild = spawn("mkdir", ["-p",buildLocaltion+"/bundle"], options);
     var meteorBuild = spawn(executable, args, options);
-    // var stdout = "";
-    // var stderr = "";
     meteorBuild.stdout.pipe(process.stdout, {
       end: false
     });
@@ -62,10 +58,10 @@ exports.archive = function(params, done) {
     }
   });
   archive.on('entry', function() {
-    params.spinner.text = '[meteorup.cn]'.magenta + ' - Archive Project ' + sourceDir + ' by ' + archive.pointer() + ' bytes';
+    params.spinner.text = '[meteorup.cn]' + __('archiving', sourceDir, archive.pointer());
   });
   output.once('close', function() {
-    params.spinner.text = '[meteorup.cn]'.magenta + ' - Archive Project ' + bundlePath;
+    params.spinner.text = '[meteorup.cn]' + __('archive', bundlePath);
     params.spinner.succeed();
     done(null, params);
   });

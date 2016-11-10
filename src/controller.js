@@ -6,7 +6,6 @@ var async = require('async');
 var build = require('./build');
 var colors = require('colors');
 var rimraf = require('rimraf');
-global.notification = "finished";
 module.exports = Actions;
 //
 function Actions(pwd, options) {
@@ -27,13 +26,13 @@ Actions.prototype.deploy = function(appName, privateKey) {
         }
     });
     var params = {
-        appName: appName,
-        appPath: appPath,
-        buildOptions: buildOptions,
-        spinner: spinner,
-        privateKey: privateKey,
-    }
-    console.log(('Started building ' + appName + " application.").bold.blue);
+            appName: appName,
+            appPath: appPath,
+            buildOptions: buildOptions,
+            spinner: spinner,
+            privateKey: privateKey,
+        }
+        // console.log(__('building', appName).bold.cyan);
     async.waterfall([
         function(done) {
             done(null, params);
@@ -46,15 +45,17 @@ Actions.prototype.deploy = function(appName, privateKey) {
         deploy.watch,
     ], function(err, params) {
         if (err) {
-            params.spinner.text = err.message;
-            params.spinner.fail()
-            console.log(err);
-            say('error');
+            if (err.message.length > 20) {
+                console.log(err.message.red);
+            } else {
+                console.log(__(err.message).red);
+            }
+            say(__('failure'));
         } else {
-            params.spinner.text = '[meteorup.cn]'.magenta + ' - ' + params.appName + ' Project Deployment Is Successful';
-            params.spinner.succeed()
-            console.log(('visit to http://' + params.appName + '.meteorup.cn'));
-            say(global.notification);
+            params.spinner.text = '[meteorup.cn]' + __('successful', params.appName);
+            params.spinner.succeed();
+            console.log(__('visit', appName).bold.magenta);
+            say(__('finished'));
         }
         whenAfterDeployed(params.buildLocaltion);
     });
