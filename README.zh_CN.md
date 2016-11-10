@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://meteorup.cn/">
-    <img alt="Meteorup" src="https://github.com/meteorup/meteorup/blob/master/logo.svg?raw=true" width="546">
+    <img alt="Meteorup" src="https://rawgit.com/meteorup/meteorup/master/logo.svg" width="546">
   </a>
 </p>
 
