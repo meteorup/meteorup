@@ -4,7 +4,7 @@
   },
   "name": "meteorup",
   "version": "2.0.0alpha",
-  "description": "Meteorup is a meteor enhancement tools",
+  "description": "Meteorup is a meteor deployment tools",
   "main": "index.js",
   "scripts": {
     "test": "test/index.js",
@@ -13,21 +13,21 @@
     "build": "npm run build:js",
     "isprod": "sed -i '' 's/\\/src\\//\\/lib\\//g' bin/meteorup",
     "isdev": "sed -i '' 's/\\/lib\\//\\/src\\//g' bin/meteorup",
-    "preisprod": "sed '/build_start/,/build_end/d' src/config.js > lib/config.js",
-    "build:js": "cp src/config.js lib/config.js && uglifyjs src/build.js -o lib/build.js -c -m && uglifyjs src/deploy.js -o lib/deploy.js -c -m && uglifyjs src/controller.js -o lib/controller.js -c -m"
+    "//preisprod": "sed '/build_start/,/build_end/d' src/config.js > lib/config.js",
+    "build:js": "uglifyjs src/config.js -o lib/config.js && uglifyjs src/build.js -o lib/build.js -c -m && uglifyjs src/deploy.js -o lib/deploy.js -c -m && uglifyjs src/controller.js -o lib/controller.js -c -m"
   },
   "author": {
     "email": "romejiang@gmail.com",
     "name": "Stephen Jiang"
   },
-  "keywords": ["meteor", "enhancement", "china", "GFW"],
-  "homepage": "https://github.com/romejiang/meteorup",
+  "keywords": ["meteor", "deployment","hosting", "china", "GFW"],
+  "homepage": "https://github.com/meteorup/meteorup",
   "repository": {
     "type": "git",
-    "url": "git@github.com:romejiang/meteorup.git"
+    "url": "git@github.com:meteorup/meteorup.git"
   },
   "bugs": {
-    "url": "https://github.com/romejiang/meteorup/issues"
+    "url": "https://github.com/meteorup/meteorup/issues"
   },
   "license": "MIT",
   "dependencies": {

@@ -2,4 +2,7 @@
 .npmrc
 .git
 npm-debug.log
-src
+help.md
+src/
+test/
+

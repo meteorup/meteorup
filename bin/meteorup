@@ -2,18 +2,30 @@
 // 'use strict';
 var fs        = require('fs');
 var pkg       = require('../package.json');
+var i18n      = require("i18n");
 var path      = require('path');
 var commander = require('commander');
 var controller   = require('../src/controller');
+// ===============================
+var defaultLocale = 'en';
+if (process.env.LANG.indexOf('zh') > -1) defaultLocale = 'zh_CN';
+if (process.env.METEORUP_LANG) defaultLocale = process.env.METEORUP_LANG;
+i18n.configure({
+    locales: ['en', 'zh_CN'],
+    directory: __dirname + '/../locales',
+    defaultLocale: defaultLocale,
+    register: global
+});
+// ===============================
 
-console.log(('Welcome to use meteorup service.').bold.blue);
+console.log(__('Welcome').bold.cyan);
 
 // 部署到meteorup
 commander.command('deploy <project-name> <private-key>')
-  .option('-m, --mobile-settings <mobile-settings.json>', 'Set mobile-settings from json file')
-  .option('-s, --server-only', 'server only')
-  .option('-d, --debug', 'debug mode')
-  .description('Deployment this project to meteorup.cn microhost')
+  .option('-m, --mobile-settings <mobile-settings.json>', __('mobile-settings'))
+  .option('-s, --server-only', __('server-only'))
+  .option('-d, --debug', __('debug'))
+  .description(__('deploy-desc'))
   .action(function(projectName , privateKey, options) {
 
     var pwd = path.resolve('.');
@@ -24,35 +36,18 @@ commander.command('deploy <project-name> <private-key>')
     }
 
   }).on('--help', function() {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ meteorup deploy appName  # Deployment to http://appName.meteorup.cn ');
-    console.log();
-    console.log('    $ meteorup deploy appName --env env.json');
-    console.log();
+    console.log(__('deploy-help'));
+    
   }
 );
 
 commander.version(pkg.version)
   .usage('deplay project-name')
-  .description(pkg.description)
-  .option('-v, --version', 'meteorup version')
+  .description(__('description'))
+  .option('-v, --version', __('version'))
 
 commander.on('--help', function() {
-  console.log('  Basic Examples:');
-  console.log('');
-  console.log('  Faster install meteor:');
-  console.log('');
-  console.log('    $ meteorup install');
-  console.log('');
-  console.log('  Deployment project:');
-  console.log('');
-  console.log('    $ meteorup deploy appName');
-  console.log('');
-  console.log('  Command help:');
-  console.log('');
-  console.log('    $ meteorup deploy -h');
-  console.log('');
+  console.log(__('help'));
 });
 
 if (process.argv && process.argv.length <= 2) {
