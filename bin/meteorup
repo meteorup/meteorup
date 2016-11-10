@@ -8,7 +8,7 @@ var commander = require('commander');
 var controller   = require('../src/controller');
 // ===============================
 var defaultLocale = 'en';
-if (process.env.LANG.indexOf('zh') > -1) defaultLocale = 'zh_CN';
+if (process.env.LANG && process.env.LANG.indexOf('zh') > -1) defaultLocale = 'zh_CN';
 if (process.env.METEORUP_LANG) defaultLocale = process.env.METEORUP_LANG;
 i18n.configure({
     locales: ['en', 'zh_CN'],
@@ -37,7 +37,6 @@ commander.command('deploy <project-name> <private-key>')
 
   }).on('--help', function() {
     console.log(__('deploy-help'));
-    
   }
 );
 
