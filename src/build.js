@@ -28,8 +28,8 @@ exports.build = function(params, done) {
     var options = {
       cwd: params.appPath
     };
-    var meteorBuild = spawn("mkdir", ["-p",buildLocaltion+"/bundle"], options);
-    // var meteorBuild = spawn(executable, args, options);
+    // var meteorBuild = spawn("mkdir", ["-p",buildLocaltion+"/bundle"], options);
+    var meteorBuild = spawn(executable, args, options);
     meteorBuild.stdout.pipe(process.stdout, {
       end: false
     });
