@@ -4,7 +4,7 @@
   },
   "name": "meteorup",
   "version": "2.0.0alpha",
-  "description": "Meteorup is a meteor enhancement tools",
+  "description": "Meteorup is a meteor deployment tools",
   "main": "index.js",
   "scripts": {
     "test": "test/index.js",
@@ -20,14 +20,14 @@
     "email": "romejiang@gmail.com",
     "name": "Stephen Jiang"
   },
-  "keywords": ["meteor", "enhancement", "china", "GFW"],
-  "homepage": "https://github.com/romejiang/meteorup",
+  "keywords": ["meteor", "deployment","hosting", "china", "GFW"],
+  "homepage": "https://github.com/meteorup/meteorup",
   "repository": {
     "type": "git",
-    "url": "git@github.com:romejiang/meteorup.git"
+    "url": "git@github.com:meteorup/meteorup.git"
   },
   "bugs": {
-    "url": "https://github.com/romejiang/meteorup/issues"
+    "url": "https://github.com/meteorup/meteorup/issues"
   },
   "license": "MIT",
   "dependencies": {
