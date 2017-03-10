@@ -4,7 +4,7 @@
 set -e
 shopt -s expand_aliases
 
-## check nvm 
+## check nvm
 [ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh"
 
 . /etc/profile
@@ -41,6 +41,11 @@ cd $APP_DIR
 node --version
 echo "=> Deploy meteor on <%=appName %>"
 
+### export METEOR_SETTINGS
+if [ -f settings.json ]; then
+  export METEOR_SETTINGS=`cat settings.json`
+fi
+
 pm2 stop app.json -s
 sleep 1
 
@@ -53,4 +58,3 @@ if [ "$listen"x == "LISTEN"x ]; then
 else
     pm2 start app.json
 fi
-
