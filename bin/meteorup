@@ -52,7 +52,7 @@ commander.command('deploy <project-name> <private-key>')
     // console.log("options"); //选项
     // console.log(privateKey); //选项
     // console.log(options); //选项
-    
+
     // for( var opt in options){
     //   console.log("============");
     //   console.log(opt);
@@ -86,7 +86,7 @@ commander.command('setup')
     if(actionsRegistry['setup']) {
       actionsRegistry['setup']();
     }
-   
+
   }).on('--help', function() {
     console.log('  Examples:');
     console.log();
@@ -95,10 +95,30 @@ commander.command('setup')
   }
 );
 
+// 重新配置服务器启动脚本
+commander.command('reconfig')
+  .description('Reconfig settings.json on private server')
+  .action(function(options) {
+
+    var pwd = path.resolve('.');
+
+    var actionsRegistry = new controller( pwd ,options);
+    if(actionsRegistry['reconfig']) {
+      actionsRegistry['reconfig']();
+    }
+
+  }).on('--help', function() {
+    console.log('  Examples:');
+    console.log();
+    console.log('    $ meteorup reconfig #  configuration your server');
+    console.log();
+  }
+);
 
 // 部署到私有的服务器上
 commander.command('push')
   .option('-m, --mobile-settings <mobile-settings.json>', 'Set mobile-settings from json file')
+  .option('-e, --settings <settings.json>', 'Set env.METEOR_SETTINGS from json file')
   .option('-s, --server-only', 'server only')
   .option('-d, --debug', 'debug mode')
   .option('-b, --verbose', 'verbose mode')
@@ -194,7 +214,7 @@ commander.command('test')
 
 //     var pwd = path.resolve('.');
 //     console.log("come soon.");
-   
+
 //   }).on('--help', function() {
 //     console.log('  Examples:');
 //     console.log();
@@ -211,7 +231,7 @@ commander.command('test')
 //     var pwd = path.resolve('.');
 //     // console.log(options);
 //     console.log("come soon.");
-   
+
 //   }).on('--help', function() {
 //     console.log('  Examples:');
 //     console.log();
@@ -228,7 +248,7 @@ commander.command('test')
 //     var pwd = path.resolve('.');
 //     // console.log(options);
 //     console.log("come soon.");
-   
+
 //   }).on('--help', function() {
 //     console.log('  Examples:');
 //     console.log();
